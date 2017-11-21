@@ -31,7 +31,7 @@ class Grado(models.Model):
     nombre = models.CharField(max_length=200)
     aula = models.CharField(max_length=200)
     capacidad = models.CharField(max_length=200)
-    materias = models.ManyToManyField(Materia, through = 'MateriasGrados')
+    materia = models.ManyToManyField(Materia, blank=True)
     estado = models.BooleanField(default = True)
     def guardar(self):
         self.save()
@@ -62,8 +62,12 @@ class MateriasGrados(models.Model):
     materias = models.ForeignKey(Materia, on_delete = models.CASCADE)
     grado = models.ForeignKey(Grado, on_delete = models.CASCADE)
 
+class MateriasGrados2(models.Model):
+    materias = models.ForeignKey(Materia, on_delete = models.CASCADE)
+    grado = models.ForeignKey(Grado, on_delete = models.CASCADE)
+
 class materiasLinea(admin.TabularInline):
-    model = Grado
+    model = MateriasGrados2
     extra = 1
 
 class GradoAdmin(admin.ModelAdmin):
