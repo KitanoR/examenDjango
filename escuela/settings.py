@@ -24,8 +24,8 @@ SECRET_KEY = '&vpyaglh^&kmmyt%b9_q9rriibckg7zs8e(iya&g)ew^ylpblu'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+ALLOWED_HOSTS = ['kikabr.pythonanywhere.com','127.0.0.1','taaano.pythonanywhere.com']
 
-ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'alumnos'
 ]
 
 MIDDLEWARE = [
@@ -103,9 +104,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+# https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-TIME_ZONE = 'UTC'
+LANGUAGE_CODE = 'es-gt'
+
+TIME_ZONE = 'America/Guatemala'
 
 USE_I18N = True
 
@@ -118,3 +121,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+MEDIA_ROOT= 'media'
+MEDIA_URL = '/media/'
