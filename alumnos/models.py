@@ -17,16 +17,26 @@ class Maestro(models.Model):
     def __str__(self):
         return self.nombre
 
+
+
+class Materia(models.Model):
+    nombre = models.CharField(max_length=200)
+    periodos = models.CharField(max_length=200)
+    maestro = models.ForeignKey(Maestro, on_delete = models.CASCADE)
+    def guardar(self):
+        self.save()
+    def __str__(self):
+        return self.nombre
 class Grado(models.Model):
     nombre = models.CharField(max_length=200)
     aula = models.CharField(max_length=200)
     capacidad = models.CharField(max_length=200)
+    materias = models.ManyToManyField(Materia, through = 'MateriasGrados')
     estado = models.BooleanField(default = True)
     def guardar(self):
         self.save()
     def __str__(self):
         return self.nombre
-
 class Alumno(models.Model):
     nombre = models.CharField(max_length=200)
     apellido = models.CharField(max_length=200)
@@ -35,15 +45,6 @@ class Alumno(models.Model):
     numencargado = models.CharField(max_length=200)
     grado = models.ForeignKey(Grado, on_delete = models.CASCADE)
     estado = models.BooleanField(default = True)
-    def guardar(self):
-        self.save()
-    def __str__(self):
-        return self.nombre
-
-class Materia(models.Model):
-    nombre = models.CharField(max_length=200)
-    periodos = models.CharField(max_length=200)
-    maestro = models.ForeignKey(Maestro, on_delete = models.CASCADE)
     def guardar(self):
         self.save()
     def __str__(self):
